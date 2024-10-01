@@ -1,23 +1,20 @@
-import logo from './logo.svg';
-import './App.css';
+import products from "./data.js";
+import { useState } from "react";
+import Cards from "./components/Cards.js";
 
 function App() {
+  const [data, setData] = useState(products);
+  function updateData(key) {
+		const newData = data.filter((datum) => datum.id !== key);
+    setData(newData);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg-orange-200 p-6 min-h-[100vh]">
+      <h1 className="text-[3rem] text-center font-bold text-yellow-900 mb-4">
+        Men's Watches
+      </h1>
+      <Cards data={data} updateData={updateData}></Cards>
     </div>
   );
 }
